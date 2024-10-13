@@ -26,7 +26,7 @@ Clone the project - (https://github.com/stevenduval/FSJS_P7) -
 * [Vite](https://vite.dev/) - JavaScript build tool
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - The web programming language used
 * [React](https://reactjs.org/) - JavaScript library for building UI
-* [React Router](https://reacttraining.com/react-router/) - Used to manage applications routing
+* [React Router](https://reactrouter.com/en/main) - Used to manage application routing
 
 ## Authors
 
