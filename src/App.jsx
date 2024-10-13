@@ -9,7 +9,6 @@ import Nav from './components/Nav';
 import PhotoList from './components/PhotoList';
 import PageNotFound from './components/PageNotFound';
 
-
 const App = () => {
   // get current location
   const location = useLocation();
@@ -20,23 +19,28 @@ const App = () => {
 
   // fetch data from flicker API
   const fetchData = (query) => {
+    // set loading state
     setLoading(true);
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
+        // set data as the data returned from api response
         setData(response.data.photos.photo)
+        // set loading state
         setLoading(false)
       })
       .catch(error => console.log('Error:', error))
   };
 
-  // when location changes check if we need to run fetch for static routes
+  // upon first render and when window location changes this useEffect will execute
   useEffect(()=> {
-    // if searchTerm doesnt equal current location
-    if (searchTerm !== location.pathname.replace('/', '').replace('search/', '')) {
-      // set search term state
-      setSearchTerm(location.pathname.replace('/', '').replace('search/', ''));
+    // store the searchTerm being pulled from location into a variable
+    let currentSearchTerm = location.pathname.replace('/', '').replace('search/', '')
+    //  check if we need to run fetchData if currentSearchTerm is different than previous searchTerm
+    if (searchTerm !== currentSearchTerm) {
+      // set searchTerm value
+      setSearchTerm(currentSearchTerm);
       // fetch data from flicker API
-      fetchData(location.pathname.replace('/', '').replace('search/', ''));
+      fetchData(currentSearchTerm);
     }
   }, [location]);
 
