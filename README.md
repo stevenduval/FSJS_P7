@@ -1,12 +1,3 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
 # Project Title
 
 Gallery App built with React + Vite
@@ -25,7 +16,7 @@ User can use back and forward arrows on browser and will see appropriate results
 User can also directly change the /search/term path and results will display.
 
 ### Installing
-This project does utilize a build tool and several libraries and so all dependencies will need to be installed if running locally.
+This project does utilize a build tool and several libraries and so all dependencies will need to be installed if running locally. You also will need to create a config.js file and obtain a flicker api key in order to use this app.
 ## Deployment
 
 Clone the project - (https://github.com/stevenduval/FSJS_P7) -  
