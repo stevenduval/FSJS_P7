@@ -20,7 +20,6 @@ const App = () => {
 
   // fetch data from flicker API
   const fetchData = (query) => {
-    console.log('i am running');
     // set loading state
     setLoading(true);
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)

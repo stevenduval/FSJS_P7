@@ -11,7 +11,6 @@ const SearchForm = ({ fetchData }) => {
     window.history.replaceState({}, '')
 
     const handleSubmit = (e) => {
-        console.log('why am i running');
         // prevent form from reloading screen
         e.preventDefault();
         // get value of input field
