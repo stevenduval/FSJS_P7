@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import './index.css'
 import apiKey from './config';
@@ -10,6 +10,7 @@ import PhotoList from './components/PhotoList';
 import PageNotFound from './components/PageNotFound';
 
 const App = () => {
+  const navigate = useNavigate();
   // get current location
   const location = useLocation();
   // set states
@@ -27,6 +28,8 @@ const App = () => {
         setData(response.data.photos.photo)
         // set loading state
         setLoading(false)
+        // set searchTerm value
+        setSearchTerm(query);
       })
       .catch(error => console.log('Error:', error))
   };
@@ -34,11 +37,12 @@ const App = () => {
   // upon first render and when window location changes this useEffect will execute
   useEffect(()=> {
     // store the searchTerm being pulled from location into a variable
-    let currentSearchTerm = location.pathname.replace('/', '').replace('search/', '')
-    //  check if we need to run fetchData if currentSearchTerm is different than previous searchTerm
-    if (searchTerm !== currentSearchTerm) {
-      // set searchTerm value
-      setSearchTerm(currentSearchTerm);
+    let currentSearchTerm = location.pathname.replace('/', '').replace('search/', '');
+    // if searchTerm not equal to current term and location change is not from search form
+    // or if from searchForm and the data state is empty then run fetchdata here
+    // this prevents this from loading when we use the form in the SearchForm component
+    if (searchTerm !== currentSearchTerm && location?.state?.key !== 'searchForm' 
+        || location?.state?.key === 'searchForm' && Object.keys(data[0]).length === 0) {
       // fetch data from flicker API
       fetchData(currentSearchTerm);
     }

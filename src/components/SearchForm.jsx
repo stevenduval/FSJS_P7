@@ -12,7 +12,8 @@ const SearchForm = ({ fetchData }) => {
         // get value of input field
         let currInputVal =  inputVal.current.value;
         // navigate user to specified search path
-        navigate(`/search/${currInputVal}`);
+        // state a state that we can read so we can prevent useEffect from running fetch again
+        navigate(`/search/${currInputVal}`, { state: { key: "searchForm" } });
         // fetch the data to display
         fetchData(currInputVal);
         // reset the search field
