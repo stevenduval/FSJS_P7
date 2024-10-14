@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import './index.css'
 import apiKey from './config';
@@ -10,7 +10,6 @@ import PhotoList from './components/PhotoList';
 import PageNotFound from './components/PageNotFound';
 
 const App = () => {
-  const navigate = useNavigate();
   // get current location
   const location = useLocation();
   // set states
