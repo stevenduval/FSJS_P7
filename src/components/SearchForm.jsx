@@ -6,13 +6,18 @@ const SearchForm = ({ fetchData }) => {
     const navigate = useNavigate();
     const inputVal = useRef();
 
+    // clear the navigate state when component loads/reloads
+    // this ensures that we are only setting it when we use the form
+    window.history.replaceState({}, '')
+
     const handleSubmit = (e) => {
+        console.log('why am i running');
         // prevent form from reloading screen
         e.preventDefault();
         // get value of input field
         let currInputVal =  inputVal.current.value;
         // navigate user to specified search path
-        // state a state that we can read so we can prevent useEffect from running fetch again
+        // set a state that we can read so we can prevent useEffect from running fetch again
         navigate(`/search/${currInputVal}`, { state: { key: "searchForm" } });
         // fetch the data to display
         fetchData(currInputVal);

@@ -20,14 +20,15 @@ const App = () => {
 
   // fetch data from flicker API
   const fetchData = (query) => {
+    console.log('i am running');
     // set loading state
     setLoading(true);
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         // set data as the data returned from api response
-        setData(response.data.photos.photo)
+        setData(response.data.photos.photo);
         // set loading state
-        setLoading(false)
+        setLoading(false);
         // set searchTerm value
         setSearchTerm(query);
       })
@@ -39,10 +40,8 @@ const App = () => {
     // store the searchTerm being pulled from location into a variable
     let currentSearchTerm = location.pathname.replace('/', '').replace('search/', '');
     // if searchTerm not equal to current term and location change is not from search form
-    // or if from searchForm and the data state is empty then run fetchdata here
     // this prevents this from loading when we use the form in the SearchForm component
-    if (searchTerm !== currentSearchTerm && location?.state?.key !== 'searchForm' 
-        || location?.state?.key === 'searchForm' && Object.keys(data[0]).length === 0) {
+    if (searchTerm !== currentSearchTerm && location?.state?.key !== 'searchForm') {
       // fetch data from flicker API
       fetchData(currentSearchTerm);
     }
